@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="text-align: center; margin: 20px;">
+    <h2>Cancelar Reserva</h2>
+    <p>Tem certeza de que deseja cancelar a reserva do veículo <strong>{{ reserva.veiculo.modelo }}</strong>?</p>
+</div>
+
+<form method="POST" action="{{ url_for('cancelar_reserva', reserva_id=reserva.id) }}">
+    <button type="submit" style="background-color: #cc0000;">Confirmar Cancelamento</button>
+    <a class="btn" href="{{ url_for('minhas_reservas') }}">Voltar</a>
+</form>
+{% endblock %}

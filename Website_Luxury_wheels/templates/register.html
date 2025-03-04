@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
+    <h1 class="text-2xl font-bold mb-6 text-center">Registrar-se</h1>
+    <form method="POST" action="/register">
+        <div class="mb-4">
+            <label for="nome" class="block text-sm font-medium text-gray-700">Nome Completo</label>
+            <input type="text" id="nome" name="nome" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" required>
+        </div>
+        <div class="mb-4">
+            <label for="email" class="block text-sm font-medium text-gray-700">E-mail</label>
+            <input type="email" id="email" name="email" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" required>
+        </div>
+        <div class="mb-4">
+            <label for="senha" class="block text-sm font-medium text-gray-700">Senha</label>
+            <input type="password" id="senha" name="senha" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" required>
+        </div>
+        <div class="mb-4">
+            <label for="confirmar_senha" class="block text-sm font-medium text-gray-700">Confirmar Senha</label>
+            <input type="password" id="confirmar_senha" name="confirmar_senha" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" required>
+        </div>
+        <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Registrar</button>
+    </form>
+</div>
+{% endblock %}

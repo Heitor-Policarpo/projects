@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmar Reserva</title>
+</head>
+<body>
+    <h1>Confirmar Reserva</h1>
+
+    <p>Você está prestes a confirmar a reserva do veículo: <strong>{{ reserva.veiculo.marca }} {{ reserva.veiculo.modelo }}</strong></p>
+    <p>Tem certeza?</p>
+
+    <form method="POST">
+        <button type="submit">Sim, confirmar</button>
+    </form>
+
+    <a href="{{ url_for('minhas_reservas') }}">Voltar</a>
+</body>
+</html>

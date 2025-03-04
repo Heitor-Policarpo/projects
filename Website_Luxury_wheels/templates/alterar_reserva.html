@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="text-align: center; margin: 20px;">
+    <h2>Alterar Reserva</h2>
+    <p>Edite as datas da sua reserva abaixo:</p>
+</div>
+
+<form method="POST" action="{{ url_for('alterar_reserva', reserva_id=reserva.id) }}">
+    <label for="data_inicio">Data de Início:</label>
+    <input type="date" id="data_inicio" name="data_inicio" value="{{ reserva.data_inicio }}" required>
+
+    <label for="data_fim">Data de Fim:</label>
+    <input type="date" id="data_fim" name="data_fim" value="{{ reserva.data_fim }}" required>
+
+    <label for="forma_pagamento">Forma de Pagamento:</label>
+        <select id="forma_pagamento" name="forma_pagamento" required>
+            <option value="Cartão">Cartão</option>
+            <option value="Carteira Digital">Carteira Digital</option>
+        </select>
+
+    <input type="submit" value="Salvar Alterações">
+</form>
+{% endblock %}

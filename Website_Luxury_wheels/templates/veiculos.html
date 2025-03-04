@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center">Lista de Veículos</h2>
+
+    <!-- Formulário de Filtros -->
+    <form method="POST" class="mb-4">
+        <div class="row">
+            <div class="col-md-3">
+                <label for="categoria">Categoria:</label>
+                <select name="categoria" id="categoria" class="form-control">
+                    <option value="">Todas</option>
+                    <option value="pequeno">Pequeno</option>
+                    <option value="médio">Médio</option>
+                    <option value="grande">Grande</option>
+                    <option value="SUV">SUV</option>
+                    <option value="luxo">Luxo</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="transmissao">Transmissão:</label>
+                <select name="transmissao" id="transmissao" class="form-control">
+                    <option value="">Todas</option>
+                    <option value="automático">Automático</option>
+                    <option value="manual">Manual</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label for="tipo">Tipo:</label>
+                <select name="tipo" id="tipo" class="form-control">
+                    <option value="">Todos</option>
+                    <option value="carro">Carro</option>
+                    <option value="moto">Moto</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label for="valor_diaria">Valor Máximo (€):</label>
+                <input type="number" name="valor_diaria" id="valor_diaria" class="form-control">
+            </div>
+            <div class="col-md-2">
+                <label for="quantidade_pessoas">Pessoas:</label>
+                <input type="number" name="quantidade_pessoas" id="quantidade_pessoas" class="form-control">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Filtrar</button>
+    </form>
+
+    <!-- Lista de Veículos -->
+    <div class="row">
+        {% for veiculo in veiculos %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="{{ veiculo.imagem }}" alt="{{ veiculo.modelo }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ veiculo[1] }} {{ veiculo[2] }}</h5>
+                    <p class="card-text">
+                        <strong>Categoria:</strong> {{ veiculo[3] }}<br>
+                        <strong>Transmissão:</strong> {{ veiculo[4] }}<br>
+                        <strong>Tipo:</strong> {{ veiculo[5] }}<br>
+                        <strong>Capacidade:</strong> {{ veiculo[6] }} pessoas<br>
+                        <strong>Diária:</strong> €{{ veiculo[8] }}
+                    </p>
+                    <a href="{{ url_for('reservar', veiculo_id=veiculo[0]) }}" class="btn btn-success">Reservar</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

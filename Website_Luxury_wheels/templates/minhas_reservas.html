@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Minhas Reservas{% endblock %}
+
+{% block content %}
+    <h1><i class="fas fa-car"></i> Minhas Reservas</h1>
+    {% if reservas %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Veículo</th>
+                    <th>Data de Início</th>
+                    <th>Data de Fim</th>
+                    <th>Valor Total</th>
+                    <th>Forma de Pagamento</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reserva in reservas %}
+                    <tr>
+                        <td>{{ reserva['marca'] }} {{ reserva['modelo'] }}</td>
+                        <td>{{ reserva['data_inicio'] }}</td>
+                        <td>{{ reserva['data_fim'] }}</td>
+                        <td>€{{ reserva['valor_total'] }}</td>
+                        <td>{{ reserva['forma_pagamento'] }}</td>
+                        <td>
+                            <a href="{{ url_for('alterar_reserva', reserva_id=reserva['reserva_id']) }}" class="btn btn-primary">Alterar</a>
+                            <form action="{{ url_for('cancelar_reserva', reserva_id=reserva['reserva_id']) }}" method="post" style="display:inline-block;">
+                                <button type="submit" class="btn btn-danger">Cancelar</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Você não possui reservas.</p>
+    {% endif %}
+{% endblock %}

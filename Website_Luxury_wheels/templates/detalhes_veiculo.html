@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalhes do Veículo{% endblock %}
+
+{% block content %}
+    <section class="detalhes-veiculo">
+        <h1>Detalhes do Veículo</h1>
+        <h2>{{ veiculo['marca'] }} {{ veiculo['modelo'] }}</h2>
+        <p><strong>Categoria:</strong> {{ veiculo['categoria'] }}</p>
+        <p><strong>Transmissão:</strong> {{ veiculo['transmissao'] }}</p>
+        <p><strong>Tipo:</strong> {{ veiculo['tipo'] }}</p>
+        <p><strong>Capacidade:</strong> {{ veiculo['quantidade_pessoas'] }} pessoas</p>
+        <p><strong>Valor da Diária:</strong> €{{ veiculo['valor_diaria'] }}</p>
+
+        {% if veiculo['disponivel'] %}
+            <form action="{{ url_for('reservar', veiculo_id=veiculo['id']) }}" method="post" class="form-reserva">
+                <label for="data_inicio">Data de Início:</label>
+                <input type="date" id="data_inicio" name="data_inicio" required>
+
+                <label for="data_fim">Data de Fim:</label>
+                <input type="date" id="data_fim" name="data_fim" required>
+
+                <label for="forma_pagamento">Forma de Pagamento:</label>
+                    <select id="forma_pagamento" name="forma_pagamento" required>
+                        <option value="Cartão">Cartão</option>
+                        <option value="Carteira Digital">Carteira Digital</option>
+                    </select>
+
+                <button type="submit" class="btn">Reservar Veículo</button>
+            </form>
+        {% else %}
+            <p class="indisponivel">Este veículo está atualmente indisponível para reserva.</p>
+        {% endif %}
+    </section>
+{% endblock %}
